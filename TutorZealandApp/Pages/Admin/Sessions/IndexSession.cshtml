@@ -1,0 +1,34 @@
+﻿@page
+@model TutorZealandApp.Pages.Admin.Sessions.IndexSessionModel
+@{
+}
+
+<h2>Sessioner</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Fag</th>
+            <th>Hjælpelærer</th>
+            <th>Uddannelse</th>
+            <th>Lokation</th>
+            <th>Rum</th>
+            <th>Beskrivelse</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var Session in Model.Sessions)
+        {
+            <tr>
+                <td>@Session.Name</td>
+                <td>@Session.Tutor</td>
+                <td>@Session.Education</td>
+                <td>@Session.Location</td>
+                <td>@Session.Room</td>
+                <td>@Session.Description</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-page="./CreateSession" class="btn btn-primary">Opret Ny Session</a>

@@ -1,0 +1,49 @@
+﻿@page
+@model TutorZealandApp.Pages.Subjects.CreateSubjectModel
+@{
+}
+<h2>Opret Fag</h2>
+
+<form method="post">
+
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Navn</label>
+        <div class="col-sm-6">
+            <input class="form-control" asp-for="Subject" />
+            <span asp-validation-for="Subject" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Uddannelse</label>
+        <div class="col-sm-6">
+            <input class="form-control" asp-for="education" />
+            <span asp-validation-for="education" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Semester</label>
+        <div class="col-sm-6">
+            <input class="form-control" asp-for="semester" />
+            <span asp-validation-for="semester" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Beskrivelse</label>
+        <div class="col-sm-6">
+            <input class="form-control" asp-for="description" />
+            <span asp-validation-for="description" class="text-danger"></span>
+        </div>
+    </div>
+    
+    <div class="row mb-3">
+        <div class="offset-sm-3 col-sm-3 d-grid">
+            <button type="submit" class="btn btn-primary">Opret</button>
+        </div>
+        <div class="col-sm-3 d-grid">
+            <a class="btn btn-outline-primary" href="/Pages/Account/Login" role="button">Annuller</a>
+        </div>
+    </div>
+</form>

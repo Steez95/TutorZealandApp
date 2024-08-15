@@ -1,0 +1,6 @@
+﻿@page
+@model TutorZealandApp.Pages.Account.LogOutModel
+@{
+    HttpContext.Session.Clear();
+    Response.Redirect("/");
+}

@@ -1,0 +1,43 @@
+﻿@page
+@model TutorZealandApp.Pages.Subjects.IndexSubjectModel
+@{
+}
+
+<h2>Fag</h2>
+
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Filtrere
+    </button>
+    <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Autoteknolog</a></li>
+        <li><a class="dropdown-item" href="#">Datamatiker</a></li>
+        <li><a class="dropdown-item" href="#">El-Installatør</a></li>
+        <li><a class="dropdown-item" href="#">Finansøkonom</a></li>
+        <li><a class="dropdown-item" href="#">Handelsøkonom</a></li>
+    </ul>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Navn</th>
+            <th>Uddannelse</th>
+            <th>Semester</th>
+            <th>Beskrivelse</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var subject in Model.Subjects)
+        {
+            <tr>
+                <td>@subject.Name</td>
+                <td>@subject.Education</td>
+                <td>@subject.Semester</td>
+                <td>@subject.Description</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-page="./CreateSubject" class="btn btn-primary">Opret Nyt Fag</a>

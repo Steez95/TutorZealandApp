@@ -1,0 +1,42 @@
+﻿@page
+@model TutorZealandApp.Pages.Account.LoginModel
+@{
+}
+<div class="container border" style="padding:20px">
+    <form method="post">
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Credential.Brugernavn"></label>
+            </div>
+            <div class="col-5">
+                <input type="text" asp-for="Credential.Brugernavn" class="form-control" />
+            </div>
+            <span class="text-danger" asp-validation-for="Credential.Brugernavn"></span>
+        </div>
+
+        <br />
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Credential.Adgangskode"></label>
+            </div>
+            <div class="col-5">
+                <input type="password" asp-for="Credential.Adgangskode" class="form-control" />
+            </div>
+            <span class="text-danger" asp-validation-for="Credential.Adgangskode"></span>
+        </div>
+
+        <br />
+
+        <div class="form-group row">
+            <div class="col-2">
+                <input type="submit" class="btn btn-primary" value="Login"
+            </div>
+            <div class="col-5">
+            </div>
+            <br />
+            <input type="button" class="btn btn-success" value="Registrer"
+        </div>
+    </form>
+</div>
