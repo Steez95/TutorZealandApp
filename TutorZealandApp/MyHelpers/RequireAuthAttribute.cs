@@ -18,14 +18,14 @@ namespace TutorZealandApp.MyHelpers
 
             if (role == null)
             {
-                //the user is not authenticated => redirect the user to the home page
+                
                 context.Result = new RedirectResult("/");
             }
             else
             {
                 if (RequiredRole.Length > 0 && !RequiredRole.Equals(role))
                 {
-                    //the user is authenticated but the role is not authorized
+                    
                     context.Result = new RedirectResult("/");
                 }
             }

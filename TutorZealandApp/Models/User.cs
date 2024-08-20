@@ -9,20 +9,20 @@ namespace TutorZealandApp.Models
 
         [Required]
         [EmailAddress]
-        public string Email { get; set; }
+        public string? Email { get; set; }
 
         [Required]
         [StringLength(50, MinimumLength = 3)]
-        public string UserName { get; set; }
+        public string? UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
         [StringLength(100, MinimumLength = 6)]
-        public string Password { get; set; }
+        public string? Password { get; set; }
 
         [NotMapped]
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "Passwords do not match.")]
-        public string ConfirmPassword { get; set; }
+        public string? ConfirmPassword { get; set; }
     }
 }

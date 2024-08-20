@@ -1,4 +1,75 @@
-﻿@page
+﻿@page "{id:int}"
 @model TutorZealandApp.Pages.Admin.Sessions.UpdateSessionModel
 @{
 }
+
+<h2 class="my-2">Opdater Session</h2>
+
+@if (Model.errorMessage.Length > 0)
+{
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>@Model.errorMessage</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+else if (Model.successMessage.Length > 0)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>@Model.successMessage</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+<form method="POST" enctype="multipart/form-data">
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Fag</label>
+        <div class="col-sm-6">
+            <input class="form-control" asp-for="Subject" />
+            <span asp-validation-for="Subject" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Hjælpelærer</label>
+        <div class="col-sm-6">
+            <input class="form-control" asp-for="Tutor" />
+            <span asp-validation-for="Tutor" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Uddannelse</label>
+        <div class="col-sm-6">
+            <input class="form-control" asp-for="Education" />
+            <span asp-validation-for="Education" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Lokation</label>
+        <div class="col-sm-6">
+            <input class="form-control" asp-for="Location" />
+            <span asp-validation-for="Location" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Rum</label>
+        <div class="col-sm-6">
+            <input class="form-control" asp-for="Room" />
+            <span asp-validation-for="Room" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Beskrivelse</label>
+        <div class="col-sm-6">
+            <input class="form-control" asp-for="Description" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="offset-sm-3 col-sm-3 d-grid">
+            <button type="submit" class="btn btn-primary">Opdater</button>
+        </div>
+        <div class="col-sm-3 d-grid">
+            <a class="btn btn-outline-primary" href="/Admin/Sessions/IndexSession" role="button">Annuller</a>
+        </div>
+    </div>
+</form>

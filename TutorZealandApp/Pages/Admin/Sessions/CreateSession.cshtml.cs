@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
@@ -5,6 +6,7 @@ using System.Data.SqlClient;
 
 namespace TutorZealandApp.Pages.Admin.Sessions
 {
+    [Authorize(Roles = "admin")]
     public class CreateSessionModel : PageModel
     {
         [BindProperty]
@@ -75,7 +77,7 @@ namespace TutorZealandApp.Pages.Admin.Sessions
                 return;
             }
             successMessage = "Data saved correctly";
-            Response.Redirect("/Account/Login");
+            Response.Redirect("/Admin/Sessions/IndexSession");
         }
     }
 }

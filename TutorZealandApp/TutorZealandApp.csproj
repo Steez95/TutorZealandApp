@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="MyHelpers\Class.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\img\img1.png" />
   </ItemGroup>
 

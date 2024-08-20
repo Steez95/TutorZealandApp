@@ -1,7 +1,5 @@
 ﻿@page
 @model TutorZealandApp.Pages.Admin.Sessions.IndexSessionModel
-@{
-}
 
 <h2>Sessioner</h2>
 
@@ -17,18 +15,30 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var Session in Model.Sessions)
+        @foreach (var session in Model.listSessions)
         {
             <tr>
-                <td>@Session.Name</td>
-                <td>@Session.Tutor</td>
-                <td>@Session.Education</td>
-                <td>@Session.Location</td>
-                <td>@Session.Room</td>
-                <td>@Session.Description</td>
+                <td>@session.subject</td>
+                <td>@session.tutor</td>
+                <td>@session.education</td>
+                <td>@session.location</td>
+                <td>@session.room</td>
+                <td>@session.description</td>
+                @if (HttpContext.Session.GetString("role") == "admin")
+                {
+                    <td>
+                        <a class="btn btn-primary btn-sm" href="@Url.Page("./UpdateSession", new { id = session.id })">Rediger</a>
+                        <form method="post" asp-page-handler="Delete" asp-route-id="@session.id" style="display:inline;">
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Er du sikker på, at du vil slette denne session?');">Slet</button>
+                        </form>
+                    </td>
+                }
             </tr>
         }
     </tbody>
 </table>
 
-<a asp-page="./CreateSession" class="btn btn-primary">Opret Ny Session</a>
+@if (HttpContext.Session.GetString("role") == "admin")
+{
+    <a asp-page="./CreateSession" class="btn btn-primary">Opret Ny Session</a>
+}

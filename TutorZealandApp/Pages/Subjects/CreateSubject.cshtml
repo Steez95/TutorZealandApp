@@ -17,7 +17,13 @@
     <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Uddannelse</label>
         <div class="col-sm-6">
-            <input class="form-control" asp-for="education" />
+            <select asp-for="education" class="form-select">
+                <option value="1">Autoteknolog</option>
+                <option value="2">Datamatiker</option>
+                <option value="3">El-Installatør</option>
+                <option value="4">Finansøkonom</option>
+                <option value="5">Handelsøkonom</option>
+            </select>
             <span asp-validation-for="education" class="text-danger"></span>
         </div>
     </div>

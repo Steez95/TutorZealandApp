@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+
 namespace TutorZealandApp;
 
 public class Program
@@ -15,6 +17,20 @@ public class Program
             options.IdleTimeout = TimeSpan.FromMinutes(30); // Set session timeout
             options.Cookie.HttpOnly = true; // Make the session cookie HTTP-only
             options.Cookie.IsEssential = true; // Make the session cookie essential
+        });
+
+        builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+        .AddCookie(options =>
+        {
+            options.LoginPath = "/Account/Login";
+            options.LogoutPath = "/Account/Logout";
+            options.AccessDeniedPath = "/";
+        });
+
+        builder.Services.AddAuthorization(options =>
+        {
+            options.AddPolicy("admin", policy =>
+                policy.RequireRole("admin"));
         });
 
         var app = builder.Build();
@@ -35,6 +51,7 @@ public class Program
         app.UseSession();
 
         app.UseAuthorization();
+        app.UseAuthentication();
 
         app.MapRazorPages();
 

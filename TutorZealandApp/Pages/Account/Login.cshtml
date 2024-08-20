@@ -7,27 +7,32 @@
         <div class="text-danger" asp-validation-summary="ModelOnly"></div>
         <div class="form-group row">
             <div class="col-2">
-                <label asp-for="Credential.Brugernavn"></label>
+                <label asp-for="Email"></label>
             </div>
             <div class="col-5">
-                <input type="text" asp-for="Credential.Brugernavn" class="form-control" />
+                <input type="text" asp-for="Email" class="form-control" />
             </div>
-            <span class="text-danger" asp-validation-for="Credential.Brugernavn"></span>
+            <span class="text-danger" asp-validation-for="Email"></span>
         </div>
 
         <br />
 
         <div class="form-group row">
             <div class="col-2">
-                <label asp-for="Credential.Adgangskode"></label>
+                <label asp-for="Password"></label>
             </div>
             <div class="col-5">
-                <input type="password" asp-for="Credential.Adgangskode" class="form-control" />
+                <input type="password" asp-for="Password" class="form-control" />
             </div>
-            <span class="text-danger" asp-validation-for="Credential.Adgangskode"></span>
+            <span class="text-danger" asp-validation-for="Password"></span>
         </div>
 
         <br />
+
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="alert alert-danger">@Model.ErrorMessage</div>
+        }
 
         <div class="form-group row">
             <div class="col-2">

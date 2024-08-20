@@ -122,7 +122,7 @@ namespace TutorZealandApp.Pages.Account
             }
 
             successMessage = "Account created successfully";
-            Response.Redirect("/");
+            Response.Redirect("/Index");
         }
 
     }
