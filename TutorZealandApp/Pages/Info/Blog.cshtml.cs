@@ -1,14 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using TutorZealandApp.Models;
 
-namespace TutorZealandApp.Pages.Subjects
+namespace TutorZealandApp.Pages.Info
 {
-    public class UpdateSubjectModel : PageModel
+    public class BlogModel : PageModel
     {
         public void OnGet()
         {
-            
         }
     }
 }

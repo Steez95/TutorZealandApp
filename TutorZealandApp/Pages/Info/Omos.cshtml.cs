@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace TutorZealandApp.Pages.Admin.Sessions
+namespace TutorZealandApp.Pages.Info
 {
-    public class DeleteSessionModel : PageModel
+    public class OmosModel : PageModel
     {
         public void OnGet()
         {

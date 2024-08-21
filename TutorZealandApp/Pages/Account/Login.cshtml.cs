@@ -23,7 +23,6 @@ namespace TutorZealandApp.Pages.Account
 
         public void OnGet(string returnUrl = null)
         {
-            // You could store the returnUrl in ViewData or TempData if needed for redirecting after login
             ViewData["ReturnUrl"] = returnUrl;
         }
 
@@ -62,7 +61,7 @@ namespace TutorZealandApp.Pages.Account
 
                                 if (result == PasswordVerificationResult.Success)
                                 {
-                                    // Create the user's claims
+                                    
                                     var claims = new List<Claim>
                                     {
                                         new Claim(ClaimTypes.Name, Email),
@@ -71,23 +70,23 @@ namespace TutorZealandApp.Pages.Account
                                         new Claim("LastName", lastname)
                                     };
 
-                                    // Create the claims identity
+                                    
                                     var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
-                                    // Create the claims principal
+                                    
                                     var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
 
-                                    // Sign in the user with the authentication cookie
+                                    
                                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
 
-                                    // Set session variables
+                                    
                                     HttpContext.Session.SetInt32("id", reader.GetInt32(0));
                                     HttpContext.Session.SetString("firstname", firstname);
                                     HttpContext.Session.SetString("lastname", lastname);
                                     HttpContext.Session.SetString("email", Email);
                                     HttpContext.Session.SetString("role", role);
 
-                                    // Redirect to returnUrl or home page if returnUrl is null
+                                    
                                     if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
                                     {
                                         return Redirect(returnUrl);

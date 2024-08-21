@@ -1,13 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
-using TutorZealandApp.Models;
 
-namespace TutorZealandApp.Pages.Subjects
+namespace TutorZealandApp.Pages.Education
 {
-    public class CreateSubjectModel : PageModel
+    public class CreateEducationModel : PageModel
     {
-
         [BindProperty]
         [Required(ErrorMessage = "The Subject is required")]
         public string Subject { get; set; } = "";

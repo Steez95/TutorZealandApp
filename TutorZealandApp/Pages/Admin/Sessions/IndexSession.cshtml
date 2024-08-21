@@ -33,6 +33,12 @@
                         </form>
                     </td>
                 }
+                @if (HttpContext.Session.GetString("role") == "student")
+                {
+                    <td>
+                        <a class="btn btn-primary btn-sm" href="@Url.Page("/Admin/Sessions/BookingDetails", new { id = session.id })">Tilmeld</a>
+                    </td>
+                }
             </tr>
         }
     </tbody>

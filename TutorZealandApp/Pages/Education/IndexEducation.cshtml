@@ -1,9 +1,9 @@
 ﻿@page
-@model TutorZealandApp.Pages.Subjects.IndexSubjectModel
+@model TutorZealandApp.Pages.Education.IndexEducationModel
 @{
 }
 
-<h2>Fag</h2>
+<h2>Uddannelser</h2>
 
 <div class="dropdown">
     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -21,20 +21,18 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Navn</th>
             <th>Uddannelse</th>
             <th>Semester</th>
             <th>Beskrivelse</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var subject in Model.Subjects)
+        @foreach (var education in Model.listEducation)
         {
             <tr>
-                <td>@subject.Name</td>
-                <td>@subject.Education</td>
-                <td>@subject.Semester</td>
-                <td>@subject.Description</td>
+                <td>@education.education</td>
+                <td>@education.semester</td>
+                <td>@education.description</td>
             </tr>
         }
     </tbody>
