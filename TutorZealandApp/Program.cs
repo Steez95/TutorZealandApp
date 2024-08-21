@@ -49,10 +49,9 @@ public class Program
         app.UseRouting();
 
         app.UseSession();
-
-        app.UseAuthorization();
         app.UseAuthentication();
-
+        app.UseAuthorization();
+        
         app.MapRazorPages();
 
         app.Run();

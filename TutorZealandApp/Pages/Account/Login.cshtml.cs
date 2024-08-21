@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Identity;
 using System.Data.SqlClient;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace TutorZealandApp.Pages.Account
 {
@@ -17,11 +21,13 @@ namespace TutorZealandApp.Pages.Account
 
         public string ErrorMessage { get; set; } = "";
 
-        public void OnGet()
+        public void OnGet(string returnUrl = null)
         {
+            // You could store the returnUrl in ViewData or TempData if needed for redirecting after login
+            ViewData["ReturnUrl"] = returnUrl;
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             if (string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password))
             {
@@ -46,8 +52,8 @@ namespace TutorZealandApp.Pages.Account
                         {
                             if (reader.Read())
                             {
-                                string storedHash = reader.GetString(1); 
-                                string role = reader.GetString(2); 
+                                string storedHash = reader.GetString(1);
+                                string role = reader.GetString(2);
                                 string firstname = reader.GetString(3);
                                 string lastname = reader.GetString(4);
 
@@ -56,14 +62,37 @@ namespace TutorZealandApp.Pages.Account
 
                                 if (result == PasswordVerificationResult.Success)
                                 {
-                                    
+                                    // Create the user's claims
+                                    var claims = new List<Claim>
+                                    {
+                                        new Claim(ClaimTypes.Name, Email),
+                                        new Claim(ClaimTypes.Role, role),
+                                        new Claim("FirstName", firstname),
+                                        new Claim("LastName", lastname)
+                                    };
+
+                                    // Create the claims identity
+                                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                                    // Create the claims principal
+                                    var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+
+                                    // Sign in the user with the authentication cookie
+                                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
+
+                                    // Set session variables
                                     HttpContext.Session.SetInt32("id", reader.GetInt32(0));
                                     HttpContext.Session.SetString("firstname", firstname);
                                     HttpContext.Session.SetString("lastname", lastname);
                                     HttpContext.Session.SetString("email", Email);
                                     HttpContext.Session.SetString("role", role);
 
-                                    
+                                    // Redirect to returnUrl or home page if returnUrl is null
+                                    if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+                                    {
+                                        return Redirect(returnUrl);
+                                    }
+
                                     return RedirectToPage("/Index");
                                 }
                                 else
